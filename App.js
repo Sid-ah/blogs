@@ -7,43 +7,39 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import reducer from './src/reducers';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+import {createStackNavigator} from 'react-navigation';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+const initialState = {
+  articles: [
+    {
+      Author: 'Jack Sparrow',
+      city: 'nyc',
+      description: 'I eat. I drink and love beautiful women. I cannot remember where I am nor where I was since I spend my life traveling drunk.',
+    },
+    {
+      Author: 'Barrack Obama',
+      city: 'mia',
+      description: '.. And I believe the future of my fellow American - we can bring change that matter us, but also to the world we living. We can just be little someone because we do not have the same views - that is called bullying and American are supposed to stand to bullies.',
+    },
+  ],
+};
 
+const store = createStore (reducer, initialState);
 type Props = {};
 export default class App extends Component<Props> {
-  render() {
+  render () {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
+      <Provider store={store}>
+        <AppStackNavigator />
+      </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+const AppStackNavigator = createStackNavigator ({
+  Home: HomeScreen,
+  Articles: Articles,
+  Create: CreateArticle,
 });
