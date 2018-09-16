@@ -11,6 +11,9 @@ import reducer from './src/reducers';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import {createStackNavigator} from 'react-navigation';
+import HomeScreen from './src/screens/HomeScreen';
+import Articles from './src/screens/Articles';
+import CreateArticle from './src/screens/CreateArticle';
 
 const initialState = {
   articles: [
