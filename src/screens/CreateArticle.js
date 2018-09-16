@@ -14,6 +14,9 @@ import {createArticle} from '../actions';
 const {width} = Dimensions.get ('window');
 
 class CreateArticle extends React.Component {
+  static navigationOptions = {
+    title: 'Create Article',
+  };
   constructor () {
     super ();
     this.state = {
