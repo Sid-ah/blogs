@@ -15,7 +15,7 @@ class Articles extends React.Component {
           {article.item.description ||
             'JAck sparrow like to dance with the stars'}
         </Text>
-        <Text style={styles.instructions}>{article.item.city}</Text>
+        <Text style={styles.instructions}>City: {article.item.city}</Text>
       </View>
     );
   };
