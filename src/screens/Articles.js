@@ -6,10 +6,13 @@ import {
   Dimensions,
   TouchableHighlights,
 } from 'react-native';
-
+import {connect} from 'react-redux';
 const {width} = Dimensions.get ('window');
 
-export default class Articles extends React.Component {
+class Articles extends React.Component {
+  static navigationOptions = {
+    title: 'News Feed',
+  };
   render () {
     return (
       <View>
@@ -18,3 +21,11 @@ export default class Articles extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    articles: state.articles,
+  };
+};
+
+export default connect (mapStateToProps, {}) (Articles);
