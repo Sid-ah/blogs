@@ -42,20 +42,19 @@ class CreateArticle extends React.Component {
         <View style={styles.topTwoInputsContainter}>
           <TextInput
             onChangeText={val => this.setState ({Author: val})}
-            placeHolder="Author Name"
+            placeholder="Author Name"
             style={styles.textInput}
           />
           <TextInput
             onChangeText={val => this.setState ({city: val})}
-            placeHolder="City"
+            placeholder="City"
             style={styles.textInput}
           />
         </View>
-        <View
-          placeholder="Enter your text here"
-          style={styles.bottomInputContainer}
-        >
+        <View style={styles.bottomInputContainer}>
           <TextInput
+            numberOfLines={10}
+            placeholder="Enter your text here"
             onChangeText={val => this.setState ({description: val})}
             maxLength={40}
             style={styles.bottomInput}
@@ -92,6 +91,7 @@ const styles = StyleSheet.create ({
     marginVertical: 5,
     width: width * 0.8,
     borderWidth: 1,
+    borderRadius: 5,
   },
   bottomInputContainer: {
     flex: 0.4,
@@ -104,6 +104,7 @@ const styles = StyleSheet.create ({
     width: width * 0.8,
     borderWidth: 1,
     alignItems: 'flex-start',
+    borderRadius: 5,
   },
   button: {
     height: 60,
@@ -111,5 +112,6 @@ const styles = StyleSheet.create ({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'yellow',
+    borderRadius: 5,
   },
 });
