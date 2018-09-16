@@ -8,10 +8,12 @@ import {
   TouchableHighlight,
   Alert,
 } from 'react-native';
+import {connect} from 'react-redux';
+import {createArticle} from '../actions';
 
 const {width} = Dimensions.get ('window');
 
-export default class CreateArticle extends React.Component {
+class CreateArticle extends React.Component {
   constructor () {
     super ();
     this.state = {
@@ -30,7 +32,8 @@ export default class CreateArticle extends React.Component {
     if (Author == '' || city == '' || description == '') {
       Alert.alert ('Missing one of the required fields');
     } else {
-      Alert.alert ('Success');
+      Alert.alert ('Successfully created the article');
+      this.props.createArticle (obj);
     }
   };
   render () {
@@ -65,6 +68,13 @@ export default class CreateArticle extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    articles: state.articles,
+  };
+};
+export default connect (mapStateToProps, {createArticle}) (CreateArticle);
 
 const styles = StyleSheet.create ({
   container: {
