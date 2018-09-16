@@ -6,25 +6,59 @@ import {
   Dimensions,
   TextInput,
   TouchableHighlight,
+  Alert,
 } from 'react-native';
 
 const {width} = Dimensions.get ('window');
 
 export default class CreateArticle extends React.Component {
+  constructor () {
+    super ();
+    this.state = {
+      Author: '',
+      city: '',
+      description: '',
+    };
+  }
+  handleSubmit = () => {
+    const {Author, city, description} = this.state;
+    const obj = {
+      Author,
+      city,
+      description,
+    };
+    if (Author == '' || city == '' || description == '') {
+      Alert.alert ('Missing one of the required fields');
+    } else {
+      Alert.alert ('Success');
+    }
+  };
   render () {
     return (
       <View style={styles.container}>
         <View style={styles.topTwoInputsContainter}>
-          <TextInput placeHolder="Author Name" style={styles.textInput} />
-          <TextInput placeHolder="City" style={styles.textInput} />
+          <TextInput
+            onChangeText={val => this.setState ({Author: val})}
+            placeHolder="Author Name"
+            style={styles.textInput}
+          />
+          <TextInput
+            onChangeText={val => this.setState ({city: val})}
+            placeHolder="City"
+            style={styles.textInput}
+          />
         </View>
         <View
           placeholder="Enter your text here"
           style={styles.bottomInputContainer}
         >
-          <TextInput style={styles.bottomInput} />
+          <TextInput
+            onChangeText={val => this.setState ({description: val})}
+            maxLength={40}
+            style={styles.bottomInput}
+          />
         </View>
-        <TouchableHighlight style={styles.button}>
+        <TouchableHighlight onPress={this.handleSubmit} style={styles.button}>
           <Text>Submit</Text>
         </TouchableHighlight>
       </View>
