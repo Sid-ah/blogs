@@ -8,3 +8,6 @@ cd ./Blogs && yarn
 // Final step
 react-native run-ios
 ```
+
+_Author_
+`Sidi-Ahmed`
